@@ -54,6 +54,7 @@ GO
 
 
 
+UPDATE dbo.UsersAndRecieps SET saveFavorites=0 WHERE username='chenavra' and recipeId='63898741'
 
 INSERT INTO UsersAndRecieps(username, recipeId, watched, saveFavorites)
 VALUES ('iris', '1', 1, 0);
