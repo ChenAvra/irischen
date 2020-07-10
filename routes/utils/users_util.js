@@ -28,6 +28,7 @@ async function checkIfUserInDB(id) {
 
 async function getUserInfoOnRecipes(user_name, ids){// access DB `SELECT username FROM dbo.Users WHERE user_id = '${id}'`
     var data={};
+    try{
     for(var i=0; i<ids.length; i++){
         var userData = await DButils.execQuery(`SELECT watched,saveFavorites FROM dbo.UsersAndRecieps WHERE username='${user_name}' and recipeId='${ids[i]}'`);
         if(userData.length==0){
@@ -41,10 +42,15 @@ async function getUserInfoOnRecipes(user_name, ids){// access DB `SELECT usernam
                 data[ids[i]].push({watched: userData[0].watched});
                 data[ids[i]].push({saveFavorites: userData[0].saveFavorites});
         }
+        return data;
+
   
 
     }
-    return data;
+    }catch(error){
+            console.log(error)
+    }
+
 
 }
 
