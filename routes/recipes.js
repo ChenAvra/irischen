@@ -19,7 +19,7 @@ app.use(express.json()); // parse application/json
 router.get("/search/query/:searchQuery/amount/:num", (req, res) => {//iris
     const{ searchQuery, num } = req.params;
     search_params = {};
-    search_params.Query = searchQuery;
+    search_params.query = searchQuery;
     search_params.number = num;
     search_params.instructionsRequired = true;
     search_util.extractQureryParams(req.query,search_params);

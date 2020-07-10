@@ -73,7 +73,7 @@ app.use("/recipes",recipes);
 
 
 app.get("/alive", (req,res) => {
-    res.send("I'm alive");
+    return res.send("I'm alive");
 });
 
 app.use((req,res) => res.sendStatus(404));
@@ -83,5 +83,5 @@ app.listen(port, () => {
 });
 
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500).send({ message: err.message||"bad", success: false });
+    return res.status(err.status || 500).send({ message: err.message||"bad", success: false });
 });
