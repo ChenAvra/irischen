@@ -76,7 +76,7 @@ app.get("/alive", (req,res) => {
     return res.send("I'm alive");
 });
 
-app.use((req,res) => res.sendStatus(404));
+// app.use((req,res) => res.sendStatus(404));
 
 app.listen(port, () => {
     console.log('Example app listening on port 3000');

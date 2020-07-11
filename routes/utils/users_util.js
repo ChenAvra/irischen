@@ -131,8 +131,8 @@ async function getMyFamilyRecipesPreview(username){
     var familylRecipes= extractFamilyDataPreview(MyFamilyRecipesPreview,username);
     return familylRecipes;
 }
-async function getMyFamilyRecipes(username){
-    var MyFamilyRecipes= await DButils.execQuery(`SELECT * FROM dbo.familylRecipes WHERE username='${username}'`);
+async function getMyFamilyRecipes(username,id){
+    var MyFamilyRecipes= await DButils.execQuery(`SELECT * FROM dbo.familylRecipes WHERE username='${username}' and recipeId='${id}'`);
     var familylRecipes=await extractFamilyData(MyFamilyRecipes,username);
     return familylRecipes;
 }

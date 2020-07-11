@@ -87,9 +87,12 @@ router.get('/myFamilyRecepies/getPreview', async (req, res, next) => {//chen
 
 });
 
-router.get('/myFamilyRecepies/getFullRecipe', async (req, res, next) => {//chen
+router.get('/myFamilyRecepies/getFullRecipe/:recipeID', async (req, res, next) => {//chen
     try {
-        var myFamilyRecipes = await users_util.getMyFamilyRecipes(req.user[0].username);
+
+        
+        const{ recipeID } = req.params;
+        var myFamilyRecipes = await users_util.getMyFamilyRecipes(req.user[0].username,recipeID);
         return res.status(200).send(myFamilyRecipes);
     } catch (error) {
         next(error);
@@ -130,13 +133,8 @@ router.post('/addNewRecipeToFavorites', async (req, res, next) => {//chen
             isRecipeExist=await users_util.checkIfRecipeInUsersAndRecipesTable(req.user[0].username,req.body.id);
 
             if(isRecipeExist.length!=0){
-<<<<<<< HEAD
-                let users = await DButils.execQuery(`UPDATE dbo.UsersAndRecieps SET saveFavorites=1 WHERE username='${req.user[0].username} and recipeId='${req.body.id}'`);
-                return res.status(200).send("successfuly saved in favorites");
-=======
                 let users = await DButils.execQuery(`UPDATE dbo.UsersAndRecieps SET saveFavorites=1 WHERE username='${req.user[0].username}' and recipeId='${req.body.id}'`);
-                res.status(200).send("successfuly saved in favorites");
->>>>>>> 572c706ed69cef42636595edb3f605ba9d25f3b4
+                return res.status(200).send("successfuly saved in favorites");
             }
             else{
               
@@ -149,7 +147,7 @@ router.post('/addNewRecipeToFavorites', async (req, res, next) => {//chen
         else {
             // recordSerialNumber=recordSerialNumber+1;
             let users = await DButils.execQuery(`INSERT INTO dbo.UsersAndRecieps (username, recipeId, watched, saveFavorites) VALUES ('${req.user[0].username}','${req.body.id}','0','1')`);
-            res.status(200).send("successfuly saved in favorites")
+            return res.status(200).send("successfuly saved in favorites")
         }
 
     } catch (error) {
