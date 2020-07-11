@@ -129,7 +129,7 @@ router.post('/addNewRecipeToFavorites', async (req, res, next) => {//chen
             isRecipeExist=await users_util.checkIfRecipeInUsersAndRecipesTable(req.user[0].username,req.body.id);
 
             if(isRecipeExist.length!=0){
-                let users = await DButils.execQuery(`UPDATE dbo.UsersAndRecieps SET saveFavorites=1 WHERE username='${req.user[0].username} and recipeId='${req.body.id}'`);
+                let users = await DButils.execQuery(`UPDATE dbo.UsersAndRecieps SET saveFavorites=1 WHERE username='${req.user[0].username}' and recipeId='${req.body.id}'`);
                 res.status(200).send("successfuly saved in favorites");
             }
             else{
