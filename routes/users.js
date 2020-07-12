@@ -16,15 +16,20 @@ app.use(logger("dev")); //logger
 app.use(express.json()); // parse application/json
 
 router.use(async (req, res, next) => {
+    try{
     if (req.session && req.session.id) {
+        // console.log(req);
         const id = req.session.id;
+        
         const user = await users_util.checkIfUserInDB(id);
         if (user) {
             req.user = user;
             next();
-        }else {return res.sendStatus(401).send("im here")};
+        }else { return res.sendStatus(401).send("im here")};
     }
-    else {return res.sendStatus(401).send("im here"); }
+    else { return res.sendStatus(401).send("im here"); }
+    }
+    catch(e){console.log(e)}
 });
 
 

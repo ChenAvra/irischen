@@ -16,6 +16,7 @@ const bcrypt = require("bcrypt");
 
 
 async function checkIfUserInDB(id) {
+    try{
     const users = await DButils.execQuery("SELECT user_id FROM dbo.Users");
     var exist= users.find((x) => x.user_id === id)
     if(exist){
@@ -23,6 +24,7 @@ async function checkIfUserInDB(id) {
         return user;
     }
     return null;
+}catch(e){ console.log(e)}
 }
 
 
@@ -94,6 +96,7 @@ async function checkIfRecipeInUsersAndRecipesTable(userName,recipeId) {
     return toReturn;
 }
 async function getLastThreeRecipes(username){
+    try{
     var recipeToReturn=[];
     const LastThreeRecipes1= await DButils.execQuery(`SELECT recipeId, username FROM dbo.UsersHistoryRecieps ORDER BY serialNumber DESC`);
     const userLastRecipe=LastThreeRecipes1.filter((x) => x.username === username);
@@ -103,6 +106,9 @@ async function getLastThreeRecipes(username){
     }
 
     return recipeToReturn;
+    }catch(error){
+        console.log(error)
+    }
 
 
 }
