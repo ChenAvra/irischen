@@ -44,11 +44,13 @@ async function getUserInfoOnRecipes(user_name, ids){// access DB `SELECT usernam
                 data[ids[i]].push({watched: userData[0].watched});
                 data[ids[i]].push({saveFavorites: userData[0].saveFavorites});
         }
-        return data;
+      
 
   
 
     }
+    return data;
+
     }catch(error){
             console.log(error)
     }
