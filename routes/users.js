@@ -27,7 +27,6 @@ router.use(async (req, res, next) => {
             next();
         }else { return res.sendStatus(401).send("im here")};
     }
-    else { return res.sendStatus(401).send("im here"); }
     }
     catch(e){console.log(e)}
 });
@@ -50,6 +49,7 @@ router.get('/myFavorites', async (req, res, next) => {//chen
 
 router.get("/recipeInfo/:ids", async (req, res, next) => {//chen
     try {
+        console.log(req.params)
         const ids = JSON.parse(req.params.ids);
         const user_name = req.user[0].username;
         const userRecipesData = await users_util.getUserInfoOnRecipes(user_name, ids);//returns if the user watch or save on the recipe id
