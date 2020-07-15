@@ -58,7 +58,7 @@ app.use(
   session({
     cookieName: "session",
     secret: "irischen",
-    duration: 1000 * 60 * 2,
+    duration: 1000 * 60 * 15,
     activeDuration: 0,
     id: null,
     cookie: {
