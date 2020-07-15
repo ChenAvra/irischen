@@ -243,8 +243,8 @@ function extractData_preview(recipes_Info){
 }
 
 
-async function getMyRecipes_full(username){
-    const myRecipes= await DButils.execQuery(`SELECT * FROM dbo.personalRecipes WHERE username='${username}'`);
+async function getMyRecipes_full(username, recipeID){
+    const myRecipes= await DButils.execQuery(`SELECT * FROM dbo.personalRecipes WHERE username='${username}' AND id='${recipeID}'`);
     const jsonWithoutInstructions =extractData_full(myRecipes,username);
     return jsonWithoutInstructions;
 }

@@ -12,7 +12,7 @@ const search_util = require("./utils/search_recipes");
 // const users_util = require("./utils/users_util");
 // const axios = require("axios");
 const api_url = "https://api.spoonacular.com/recipes";
-const api_key = "apiKey=4a23fbf0414446e7b2cf4c0fec8319c3";
+const api_key = "apiKey=8e4cba7fc7e342c68c5d20db9b35c518";
 
 var app = express();
 app.use(logger("dev")); //logger
