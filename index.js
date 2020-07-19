@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const session = require("client-sessions");
 const cors = require("cors");
 
-// app.use(cors());
+
 
 
 
@@ -40,7 +40,7 @@ const corsConfig = {
   origin: true,
   credentials: true
 };
-
+app.use(cors({ origin: "http://localhost:8080", credentials: true }));
 app.use(cors(corsConfig));
 app.options("*", cors(corsConfig));
 
